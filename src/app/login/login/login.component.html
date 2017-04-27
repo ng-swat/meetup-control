@@ -1,0 +1,17 @@
+<form [formGroup]="formLogin" (submit)="login()">
+
+  <input type="text" title="email" name="email"  formControlName="email" />
+  <br>
+  Password:
+  <input type="text" title="password" formControlName="password" />
+  <br>
+  Remember Me:
+  <input type="checkbox" title="rememberMe" formControlName="rememberMe" />
+  <br>
+  <input type="submit" value="Submit" />
+
+  <br><br>
+  <a routerLink="/registration" >Registration</a>
+  <br>
+  <a routerLink="/password-recover" >Password Recovery</a>
+</form>

@@ -1,0 +1,17 @@
+<form [formGroup]="formRegistration" (submit)="register()">
+
+  Name:
+  <input type="text" title="name" formControlName="name" />
+  <br>
+  Email:
+  <input type="text" title="email" formControlName="email" />
+  <br>
+  Password:
+  <input type="text" title="password" formControlName="password" />
+  <br>
+  <input type="submit" value="Submit" />
+  <br><br>
+  <a routerLink="/login" >Login</a>
+  <br>
+  <a routerLink="/password-recover" >Password Recovery</a>
+</form>
