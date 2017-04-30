@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {MdButtonModule, MdCheckboxModule, MdCardModule, MdInputModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule, MdCardModule, MdInputModule, MdToolbarModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -9,12 +9,14 @@ import {MdButtonModule, MdCheckboxModule, MdCardModule, MdInputModule} from '@an
     MdCheckboxModule,
     MdCardModule,
     MdInputModule,
+    MdToolbarModule,
   ],
   exports: [
     MdButtonModule,
     MdCheckboxModule,
     MdCardModule,
     MdInputModule,
+    MdToolbarModule,
   ],
   declarations: []
 })
