@@ -8,15 +8,17 @@ import {RouterModule} from '@angular/router';
 import {loginRoutes} from './login.router';
 import {LoginService} from './login.service';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MyCustomMaterialModule} from '../utils/my-custom-material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forRoot(loginRoutes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MyCustomMaterialModule
   ],
   providers: [LoginService],
   declarations: [LoginComponent, LogoutComponent, PasswordRecoverComponent, RegistrationComponent],
-  exports: [LoginComponent, LogoutComponent, PasswordRecoverComponent, RegistrationComponent]
+  exports: [LoginComponent, LogoutComponent, PasswordRecoverComponent, RegistrationComponent, MyCustomMaterialModule]
 })
 export class LoginModule { }

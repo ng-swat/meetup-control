@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+.popup-card{
+  width:50%;
+  max-width: 400px;
+  min-width:300px;
+  margin: 0 auto;
+}
+
+.popup-card md-input-container{
+  width: 100%;
+}
+
+.button.default {
+  color: white;
+  background-color: blue;
+}

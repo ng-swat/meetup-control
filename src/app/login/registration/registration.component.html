@@ -1,17 +1,33 @@
-<form [formGroup]="formRegistration" (submit)="register()">
+<md-card class="popup-card">
 
-  Name:
-  <input type="text" title="name" formControlName="name" />
-  <br>
-  Email:
-  <input type="text" title="email" formControlName="email" />
-  <br>
-  Password:
-  <input type="text" title="password" formControlName="password" />
-  <br>
-  <input type="submit" value="Submit" />
-  <br><br>
-  <a routerLink="/login" >Login</a>
-  <br>
-  <a routerLink="/password-recover" >Password Recovery</a>
-</form>
+  <md-toolbar>
+    <div class="md-toolbar">
+      <h2><span>Registration</span></h2>
+    </div>
+  </md-toolbar>
+
+  <md-card-content>
+  <form [formGroup]="formRegistration" (submit)="register()">
+
+    <md-input-container>
+      <input mdInput placeholder="Name" type="text" title="name" formControlName="name"/>
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Email" type="text" title="email" formControlName="email"/>
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Password" type="password" title="password" formControlName="password"/>
+    </md-input-container>
+
+    <md-card-actions align="center">
+      <button md-raised-button type="submit" class="button default">Submit</button>
+    </md-card-actions>
+
+    <md-card-footer align="left">
+      <a md-button routerLink="../login">Login</a>
+      <a md-button routerLink="../password-recover">Password Recovery</a>
+    </md-card-footer>
+
+  </form>
+  </md-card-content>
+</md-card>

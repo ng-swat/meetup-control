@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import {RouterModule} from '@angular/router';
 import {loginRoutes} from './login/login.router';
 import {LoginModule} from './login/login.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MyCustomMaterialModule} from './utils/my-custom-material.module';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -18,8 +21,11 @@ import {LoginModule} from './login/login.module';
     HttpModule,
     RouterModule,
     RouterModule.forRoot(loginRoutes),
+    BrowserAnimationsModule,
+    MyCustomMaterialModule,
     LoginModule
   ],
+  exports: [MyCustomMaterialModule],
   providers: [],
   bootstrap: [AppComponent]
 })
