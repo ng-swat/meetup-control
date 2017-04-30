@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../login.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MdSnackBar} from '@angular/material';
 
 
 @Component({
@@ -12,9 +13,11 @@ export class LoginComponent implements OnInit {
 
   private loginService: LoginService;
   public formLogin: FormGroup;
+  private snackBar: MdSnackBar;
 
-  constructor(loginService: LoginService) {
+  constructor(loginService: LoginService, snackBar: MdSnackBar) {
     this.loginService = loginService;
+    this.snackBar = snackBar;
   }
 
   ngOnInit() {
@@ -28,6 +31,11 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.formLogin.valid) {
       this.loginService.login(this.formLogin.value);
+    } else {
+      // this.loginService.showFirstMessage(this.formLogin);
+      this.snackBar.open('Form is not valid.', 'OK', {
+        duration: 2000,
+      });
     }
   }
 }

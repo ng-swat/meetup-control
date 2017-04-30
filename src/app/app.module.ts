@@ -18,15 +18,12 @@ import 'hammerjs';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    RouterModule,
     RouterModule.forRoot(loginRoutes),
     BrowserAnimationsModule,
     MyCustomMaterialModule,
     LoginModule
   ],
   exports: [MyCustomMaterialModule],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

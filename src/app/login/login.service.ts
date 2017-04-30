@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {LoginForm, PasswordRecoverForm, RegistrationForm} from './login.interface';
+import {FormGroup} from '@angular/forms';
 
 @Injectable()
 export class LoginService {
@@ -17,4 +18,5 @@ export class LoginService {
   passwordRecover(passwordRecoverData: PasswordRecoverForm) {
     console.log('LoginService.passwordRecover()', passwordRecoverData);
   }
+
 }
