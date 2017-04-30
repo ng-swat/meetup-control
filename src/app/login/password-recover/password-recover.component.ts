@@ -15,8 +15,9 @@ export class PasswordRecoverComponent implements OnInit {
   private snackBar: MdSnackBar;
   private errorMessage: string;
 
-  constructor(loginService: LoginService) {
+  constructor(loginService: LoginService, snackBar: MdSnackBar) {
     this.loginService = loginService;
+    this.snackBar = snackBar;
   }
 
   ngOnInit() {
@@ -37,9 +38,9 @@ export class PasswordRecoverComponent implements OnInit {
   }
 
   getErrorMessage(): string {
-     if (this.formPasswordRecover.get('password').errors) {
-      if (this.formPasswordRecover.get('password').errors.required) {
-        return 'Password is Required';
+     if (this.formPasswordRecover.get('email').errors) {
+      if (this.formPasswordRecover.get('email').errors.required) {
+        return 'Email is Required';
       }
     }
     return '';
