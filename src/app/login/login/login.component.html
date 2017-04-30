@@ -1,0 +1,30 @@
+<md-card class="popup-card">
+
+  <md-toolbar>
+    <div class="md-toolbar">
+      <h2><span>Login</span></h2>
+    </div>
+  </md-toolbar>
+
+  <form [formGroup]="formLogin" (submit)="login()">
+
+    <md-input-container>
+      <input mdInput placeholder="Email" type="text" title="email" name="email" formControlName="email"/>
+    </md-input-container>
+    <md-input-container>
+      <input mdInput type="text" placeholder="Password" title="password" name="password" formControlName="password"/>
+    </md-input-container>
+    <md-checkbox formControlName="rememberMe">Remember Me</md-checkbox>
+
+    <md-card-actions align="center">
+      <button md-raised-button type="submit" class="button default">Submit</button>
+    </md-card-actions>
+
+    <md-card-footer align="left">
+      <a md-button routerLink="../registration">Registration</a>
+      <a md-button routerLink="../password-recover">Password Recovery</a>
+    </md-card-footer>
+
+  </form>
+
+</md-card>
