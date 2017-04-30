@@ -13,6 +13,8 @@ export class RegistrationComponent implements OnInit {
   private loginService: LoginService;
   public formRegistration: FormGroup;
   private snackBar: MdSnackBar;
+  private errorMessage: string;
+
 
   constructor(loginService: LoginService, snackBar: MdSnackBar) {
     this.loginService = loginService;
@@ -31,11 +33,30 @@ export class RegistrationComponent implements OnInit {
     if (this.formRegistration.valid) {
       this.loginService.registration(this.formRegistration.value);
     } else {
-      this.snackBar.open('Form is not valid.', 'OK', {
+      this.errorMessage = this.getErrorMessage();
+      this.snackBar.open(this.errorMessage, 'OK', {
         duration: 2000,
       });
     }
+  }
 
+  getErrorMessage(): string {
+    if (this.formRegistration.get('name').errors) {
+      if (this.formRegistration.get('name').errors.required) {
+        return 'Name is Required';
+      }
+    } else if (this.formRegistration.get('email').errors) {
+      if (this.formRegistration.get('email').errors.required) {
+        return 'Email is Required';
+      }else if (this.formRegistration.get('email').errors.email) {
+        return 'Email is Not Valid';
+      }
+    } else if (this.formRegistration.get('password').errors) {
+      if (this.formRegistration.get('password').errors.required) {
+        return 'Password is Required';
+      }
+    }
+    return '';
   }
 
 }

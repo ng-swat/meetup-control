@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../login.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MdSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-password-reminder',
@@ -11,6 +12,8 @@ export class PasswordRecoverComponent implements OnInit {
 
   private loginService: LoginService;
   public formPasswordRecover: FormGroup;
+  private snackBar: MdSnackBar;
+  private errorMessage: string;
 
   constructor(loginService: LoginService) {
     this.loginService = loginService;
@@ -25,7 +28,21 @@ export class PasswordRecoverComponent implements OnInit {
   passwordRecover() {
     if (this.formPasswordRecover.valid) {
       this.loginService.passwordRecover(this.formPasswordRecover.value);
+    } else {
+      this.errorMessage = this.getErrorMessage();
+      this.snackBar.open(this.errorMessage, 'OK', {
+        duration: 2000,
+      });
     }
+  }
+
+  getErrorMessage(): string {
+     if (this.formPasswordRecover.get('password').errors) {
+      if (this.formPasswordRecover.get('password').errors.required) {
+        return 'Password is Required';
+      }
+    }
+    return '';
   }
 
 }

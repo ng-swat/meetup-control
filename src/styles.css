@@ -16,3 +16,8 @@
   color: white;
   background-color: blue;
 }
+
+.validation-message{
+  color: red;
+  font-size: x-small;
+}

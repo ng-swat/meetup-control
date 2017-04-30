@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   private loginService: LoginService;
   public formLogin: FormGroup;
   private snackBar: MdSnackBar;
+  private errorMessage: string;
 
   constructor(loginService: LoginService, snackBar: MdSnackBar) {
     this.loginService = loginService;
@@ -32,10 +33,25 @@ export class LoginComponent implements OnInit {
     if (this.formLogin.valid) {
       this.loginService.login(this.formLogin.value);
     } else {
-      // this.loginService.showFirstMessage(this.formLogin);
-      this.snackBar.open('Form is not valid.', 'OK', {
+      this.errorMessage = this.getErrorMessage();
+      this.snackBar.open(this.errorMessage, 'OK', {
         duration: 2000,
       });
     }
+  }
+
+  getErrorMessage(): string {
+    if (this.formLogin.get('email').errors) {
+      if (this.formLogin.get('email').errors.required) {
+        return 'Email is Required';
+      }else if (this.formLogin.get('email').errors.email) {
+        return 'Email is Not Valid';
+      }
+    } else if (this.formLogin.get('password').errors) {
+      if (this.formLogin.get('password').errors.required) {
+        return 'Password is Required';
+      }
+    }
+    return '';
   }
 }
