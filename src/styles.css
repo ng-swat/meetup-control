@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('../node_modules/@angular/material/prebuilt-themes/indigo-pink.css');
-
+/*
+deeppurple-amber.css
+indigo-pink.css
+pink-bluegrey.css
+purple-green.css
+*/
 .popup-card{
   width:50%;
   max-width: 400px;

@@ -5,11 +5,17 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {RouterModule} from '@angular/router';
-import {loginRoutes} from './login/login.router';
 import {LoginModule} from './login/login.module';
+import {MeetupModule} from './meetup/meetup.module';
+import {ParticipantsModule} from './participants/participants.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MyCustomMaterialModule} from './utils/my-custom-material.module';
 import 'hammerjs';
+
+/* import routes */
+import {loginRoutes} from './login/login.router';
+import {meetupRoutes} from './meetup/meetup.router';
+import {participantsRoutes} from './participants/participants.router';
 
 @NgModule({
   declarations: [
@@ -18,10 +24,12 @@ import 'hammerjs';
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(loginRoutes),
+    RouterModule.forRoot([...loginRoutes, ...meetupRoutes, ...participantsRoutes]),
     BrowserAnimationsModule,
     MyCustomMaterialModule,
-    LoginModule
+    LoginModule,
+    MeetupModule,
+    ParticipantsModule
   ],
   exports: [MyCustomMaterialModule],
   bootstrap: [AppComponent]
