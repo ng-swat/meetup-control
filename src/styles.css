@@ -26,3 +26,13 @@ purple-green.css
   color: red;
   font-size: x-small;
 }
+
+tr:nth-child(2n){
+  background-color: #eeeeee;
+}
+tr:nth-child(2n-1){
+  background-color: #dddddd;
+}
+tr:hover{
+  background-color: #cccccc;
+}

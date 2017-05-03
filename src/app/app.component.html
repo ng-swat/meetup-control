@@ -1,8 +1,28 @@
-<md-toolbar>
-  <h1>Meetup Control</h1>
-</md-toolbar>
+    <md-menu #menu="mdMenu">
+      <button md-menu-item routerLink="/">Home</button>
+      <button md-menu-item routerLink="login">Login</button>
+      <button md-menu-item  routerLink="registration">Registration</button>
+      <button md-menu-item  routerLink="password-recover">Password Recovery</button>
 
-<br><br>
 
-<router-outlet></router-outlet>
+
+    <button md-menu-item  routerLink="my-meetups">My Meetups</button>
+    <button md-menu-item  routerLink="participants">Participants</button>
+    <button md-menu-item  routerLink="participants-check-in">Check In</button>
+
+    </md-menu>
+
+
+    <md-toolbar>
+
+      <button class="main-menu" [mdMenuTriggerFor]="menu">
+        <!--<md-icon>more_vert</md-icon>-->
+        M
+      </button>
+
+      Meetup Control
+    </md-toolbar>
+
+    <br><br>
+    <router-outlet></router-outlet>
 

@@ -9,11 +9,13 @@ import {loginRoutes} from './login.router';
 import {LoginService} from './login.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MyCustomMaterialModule} from '../utils/my-custom-material.module';
+import {meetupRoutes} from '../meetup/meetup.router';
+import {participantsRoutes} from '../participants/participants.router';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(loginRoutes),
+    RouterModule.forRoot([...loginRoutes, ...meetupRoutes, ...participantsRoutes]),
     ReactiveFormsModule,
     MyCustomMaterialModule
   ],
