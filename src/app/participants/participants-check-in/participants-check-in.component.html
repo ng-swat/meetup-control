@@ -1,3 +1,25 @@
-<p>
-  participants-check-in works!
-</p>
+<form [formGroup]="qrForm">
+<table>
+  <tr>
+    <td>Participant:</td>
+    <td>Meetup Id:</td>
+  </tr>
+  <tr>
+    <td>
+      <input formControlName="participant" />
+    </td>
+    <td>
+      <input formControlName="meetupId" />
+    </td>
+  </tr>
+</table>
+</form>
+
+<div>
+  {{qrForm.get('participant').value}} - {{qrForm.get('meetupId').value}}
+</div>
+
+
+<div class="qr-container">
+  <qr-code [value]="qrForm.get('participant').value+'-'+qrForm.get('meetupId').value" [size]="150"></qr-code>
+</div>

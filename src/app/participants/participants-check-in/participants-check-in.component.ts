@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ReactiveFormsModule, FormControl, FormGroup} from '@angular/forms';
+
 
 @Component({
   selector: 'app-participants-check-in',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParticipantsCheckInComponent implements OnInit {
 
-  constructor() { }
+  public qrForm: FormGroup;
+  constructor() {
+    this.qrForm = new FormGroup({
+      participant: new FormControl('123'),
+      meetupId: new FormControl('1001')
+    });
+  }
 
   ngOnInit() {
   }

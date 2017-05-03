@@ -27,12 +27,15 @@ purple-green.css
   font-size: x-small;
 }
 
-tr:nth-child(2n){
+table.styled {
+  width:100%;
+}
+table.styled tr:nth-child(2n){
   background-color: #eeeeee;
 }
-tr:nth-child(2n-1){
+table.styled tr:nth-child(2n-1){
   background-color: #dddddd;
 }
-tr:hover{
+table.styled tr:hover{
   background-color: #cccccc;
 }
