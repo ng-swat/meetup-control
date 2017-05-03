@@ -25,7 +25,7 @@ export class MyMeetupsComponent implements OnInit {
   }
 
   displayDetails(meetupId: number) {
-    this.router.navigate(['../meetup-details']);
+    this.router.navigate(['../meetup-details/' + meetupId]);
     // alert('Need to route to meetup-details...' + meetupId);
   }
 

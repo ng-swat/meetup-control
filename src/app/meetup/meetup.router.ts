@@ -6,7 +6,7 @@ import {ParticipantsCheckInComponent} from '../participants/participants-check-i
 
 export const meetupRoutes: Routes = [
   { path: 'my-meetups', component: MyMeetupsComponent},
-  { path: 'meetup-details', component: MeetupDetailsComponent},
+  { path: 'meetup-details/:meetupId', component: MeetupDetailsComponent},
   { path: 'participants', component: ParticipantsListComponent},
   { path: 'participants-check-in', component: ParticipantsCheckInComponent}
 ];

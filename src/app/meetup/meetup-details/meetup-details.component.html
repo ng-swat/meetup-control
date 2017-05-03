@@ -2,7 +2,7 @@
 
   <h2>Meetup Details</h2>
 
-  <table class="styled">
+  <table class="styled" *ngIf="meetup">
     <tr>
       <td>Id</td>
       <td>{{meetup.meetupId}}</td>
@@ -29,6 +29,10 @@
     </tr>
   </table>
 
-  <button  md-raised-button routerLink="../my-meetups">Back</button>
+  <div class="qr-container">
+    <qr-code [value]="'meetup:'+meetup.meetupId" [size]="150"></qr-code>
+  </div>
+
+  <button  md-raised-button routerLink="../../my-meetups">Back</button>
 
 </div>

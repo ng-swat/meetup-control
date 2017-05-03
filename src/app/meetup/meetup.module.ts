@@ -7,14 +7,15 @@ import {MyCustomMaterialModule} from '../utils/my-custom-material.module';
 
 import { MeetupDetailsComponent } from './meetup-details/meetup-details.component';
 import {MeetupService} from './meetup.service';
-
+import { QRCodeModule } from 'angular2-qrcode';
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    MyCustomMaterialModule
+    MyCustomMaterialModule,
+    QRCodeModule,
   ],
   providers: [MeetupService],
   declarations: [MyMeetupsComponent, MeetupDetailsComponent]
 })
-export class MeetupModule { }
+export class MeetupModule {}

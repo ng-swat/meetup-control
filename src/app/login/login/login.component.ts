@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../login.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MdSnackBar} from '@angular/material';
+import {StateService} from '../../utils/state.service';
 
 
 @Component({
@@ -16,8 +17,12 @@ export class LoginComponent implements OnInit {
   private snackBar: MdSnackBar;
   private errorMessage: string;
 
-  constructor(loginService: LoginService, snackBar: MdSnackBar) {
+  public isLoggedIn: boolean;
+  public stateService: StateService;
+
+  constructor(loginService: LoginService, stateService: StateService, snackBar: MdSnackBar) {
     this.loginService = loginService;
+    this.stateService = stateService;
     this.snackBar = snackBar;
   }
 
