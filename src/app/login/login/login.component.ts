@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   private snackBar: MdSnackBar;
   private errorMessage: string;
 
-  public isLoggedIn: boolean;
   public stateService: StateService;
 
   constructor(loginService: LoginService, stateService: StateService, snackBar: MdSnackBar) {
