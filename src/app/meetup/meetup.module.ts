@@ -7,7 +7,10 @@ import {MyCustomMaterialModule} from '../utils/my-custom-material.module';
 
 import { MeetupDetailsComponent } from './meetup-details/meetup-details.component';
 import {MeetupService} from './meetup.service';
-import { QRCodeModule } from 'angular2-qrcode';
+import {QRCodeModule} from 'angular2-qrcode';
+import { QrCodeViewerComponent } from './qr-code-viewer/qr-code-viewer.component';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +19,7 @@ import { QRCodeModule } from 'angular2-qrcode';
     QRCodeModule,
   ],
   providers: [MeetupService],
-  declarations: [MyMeetupsComponent, MeetupDetailsComponent]
+  entryComponents: [QrCodeViewerComponent],
+  declarations: [MyMeetupsComponent, MeetupDetailsComponent, QrCodeViewerComponent]
 })
 export class MeetupModule {}

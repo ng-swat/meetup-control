@@ -29,9 +29,18 @@
     </tr>
   </table>
 
-  <div class="qr-container">
-    <qr-code [value]="'meetup:'+meetup.meetupId" [size]="150"></qr-code>
-  </div>
+
+  <br><br>
+
+
+  <h2>Participants</h2>
+
+  <table class="styled">
+    <tr *ngFor="let participant of meetup.participants" (click)="openQrCodeDialog(participant.participantId)">
+      <td>{{ participant.participantId }}</td>
+      <td>{{ participant.name}}</td>
+    </tr>
+  </table>
 
   <button  md-raised-button routerLink="../../my-meetups">Back</button>
 
