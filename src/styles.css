@@ -26,3 +26,16 @@ purple-green.css
   color: red;
   font-size: x-small;
 }
+
+table.styled {
+  width:100%;
+}
+table.styled tr:nth-child(2n){
+  background-color: #eeeeee;
+}
+table.styled tr:nth-child(2n-1){
+  background-color: #dddddd;
+}
+table.styled tr:hover{
+  background-color: #cccccc;
+}

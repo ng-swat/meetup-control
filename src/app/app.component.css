@@ -1,0 +1,14 @@
+md-toolbar {
+  text-align: center;
+}
+.main-menu {
+  width: 40px;
+  height: 40px;
+  margin-right:20px;
+}
+
+.btn-nav {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}

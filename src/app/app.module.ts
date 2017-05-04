@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {RouterModule} from '@angular/router';
+import {StateService} from './utils/state.service';
 import {LoginModule} from './login/login.module';
 import {MeetupModule} from './meetup/meetup.module';
 import {ParticipantsModule} from './participants/participants.module';
@@ -31,7 +32,9 @@ import {participantsRoutes} from './participants/participants.router';
     MeetupModule,
     ParticipantsModule
   ],
+  providers: [StateService],
   exports: [MyCustomMaterialModule],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

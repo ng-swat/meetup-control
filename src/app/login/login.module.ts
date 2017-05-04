@@ -6,18 +6,21 @@ import { PasswordRecoverComponent } from './password-recover/password-recover.co
 import { RegistrationComponent } from './registration/registration.component';
 import {RouterModule} from '@angular/router';
 import {loginRoutes} from './login.router';
+import {StateService} from '../utils/state.service';
 import {LoginService} from './login.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MyCustomMaterialModule} from '../utils/my-custom-material.module';
+import {meetupRoutes} from '../meetup/meetup.router';
+import {participantsRoutes} from '../participants/participants.router';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(loginRoutes),
+    RouterModule.forRoot([...loginRoutes, ...meetupRoutes, ...participantsRoutes]),
     ReactiveFormsModule,
     MyCustomMaterialModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, StateService],
   declarations: [LoginComponent, LogoutComponent, PasswordRecoverComponent, RegistrationComponent],
   exports: [LoginComponent, LogoutComponent, PasswordRecoverComponent, RegistrationComponent, MyCustomMaterialModule]
 })

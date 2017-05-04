@@ -1,3 +1,47 @@
-<p>
-  meetup-details works!
-</p>
+<div>
+
+  <h2>Meetup Details</h2>
+
+  <table class="styled" *ngIf="meetup">
+    <tr>
+      <td>Id</td>
+      <td>{{meetup.meetupId}}</td>
+    </tr>
+    <tr>
+      <td>Title</td>
+      <td>{{meetup.title}}</td>
+    </tr>
+    <tr>
+      <td>Sub-Title</td>
+      <td>{{meetup.subtitle}}</td>
+    </tr>
+    <tr>
+      <td>Desc</td>
+      <td>{{meetup.description}}</td>
+    </tr>
+    <tr>
+      <td>Start Date</td>
+      <td>{{meetup.startDate}}</td>
+    </tr>
+    <tr>
+      <td>End Date</td>
+      <td>{{meetup.endDate}}</td>
+    </tr>
+  </table>
+
+
+  <br><br>
+
+
+  <h2>Participants</h2>
+
+  <table class="styled">
+    <tr *ngFor="let participant of meetup.participants" (click)="openQrCodeDialog(participant.participantId)">
+      <td>{{ participant.participantId }}</td>
+      <td>{{ participant.name}}</td>
+    </tr>
+  </table>
+
+  <button  md-raised-button routerLink="../../my-meetups">Back</button>
+
+</div>

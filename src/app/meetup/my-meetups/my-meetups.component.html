@@ -1,3 +1,18 @@
-<p>
-  my-meetups works!
-</p>
+<h2>My Meetups</h2>
+
+<table class="styled">
+  <thead>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Desc</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+  </thead>
+  <tr *ngFor="let meetup of myMeetups" (click)="displayDetails(meetup.meetupId)">
+    <td nowrap="nowrap">{{meetup.meetupId}}</td>
+    <td nowrap="nowrap">{{meetup.title}}</td>
+    <td nowrap="nowrap">{{meetup.description}}</td>
+    <td nowrap="nowrap">{{meetup.startDate | date:'short'}}</td>
+    <td nowrap="nowrap">{{meetup.endDate | date:'short'}}</td>
+  </tr>
+</table>
