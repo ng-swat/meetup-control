@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
-import {LoginForm, PasswordRecoverForm, RegistrationForm} from './login.interface';
+import {LoginForm, PasswordRecoverForm, RegistrationForm, User} from './auth.interface';
 import {FormGroup} from '@angular/forms';
 import {StateService} from '../utils/state.service';
 
 @Injectable()
-export class LoginService {
+export class AuthService {
 
   public stateService: StateService;
+  public users: User[] = [
+    {email: 'gal@xxx.com', name: 'Gal', password: 'gal'},
+    {email: 'gal2@xxx.com', name: 'Gal-2', password: 'gal2'},
+    {email: 'qwe@qwe.qwe', name: 'QWE', password: 'qwe'},
+  ];
 
   constructor(stateService: StateService) {
     this.stateService = stateService;
@@ -14,8 +19,13 @@ export class LoginService {
 
   login(loginData: LoginForm) {
     console.log('LoginService.login()', loginData);
-    if (loginData.email === 'qwe@qwe.qwe' && loginData.password === 'qwe') {
+    const loggedInUser = this.users.find(user => {
+
+      return ((user.email === loginData.email) && (user.password === loginData.password));
+    });
+    if (loggedInUser) {
       this.stateService.isLoggedIn = true;
+      // TODO: Add "loggedInUser" to store
     }
   }
 

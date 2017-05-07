@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from '../login.service';
+import {AuthService} from '../auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MdSnackBar} from '@angular/material';
 
@@ -10,14 +10,14 @@ import {MdSnackBar} from '@angular/material';
 })
 export class RegistrationComponent implements OnInit {
 
-  private loginService: LoginService;
+  private loginService: AuthService;
   public formRegistration: FormGroup;
   private snackBar: MdSnackBar;
   private errorMessage: string;
 
 
-  constructor(loginService: LoginService, snackBar: MdSnackBar) {
-    this.loginService = loginService;
+  constructor(authService: AuthService, snackBar: MdSnackBar) {
+    this.loginService = authService;
     this.snackBar = snackBar;
   }
 
