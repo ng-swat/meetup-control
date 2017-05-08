@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService} from '../auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MdSnackBar} from '@angular/material';
+import {select} from '@angular-redux/store';
 
 @Component({
   selector: 'app-password-reminder',
@@ -14,6 +15,9 @@ export class PasswordRecoverComponent implements OnInit {
   public formPasswordRecover: FormGroup;
   private snackBar: MdSnackBar;
   private errorMessage: string;
+
+  @select(['auth', 'pending']) public authPending: boolean;
+  @select(['auth', 'error']) public authError: string;
 
   constructor(authService: AuthService, snackBar: MdSnackBar) {
     this.authService = authService;
@@ -41,6 +45,8 @@ export class PasswordRecoverComponent implements OnInit {
      if (this.formPasswordRecover.get('email').errors) {
       if (this.formPasswordRecover.get('email').errors.required) {
         return 'Email is Required';
+      } else if (this.formPasswordRecover.get('email').errors.email) {
+        return 'Email is Not Valid';
       }
     }
     return '';

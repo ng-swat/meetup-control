@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {MdSnackBar} from '@angular/material';
+import {MdSnackBar, MdSpinner} from '@angular/material';
 import {StateService} from '../../utils/state.service';
+import {select} from '@angular-redux/store';
 
 
 @Component({
@@ -18,6 +19,11 @@ export class LoginComponent implements OnInit {
   private errorMessage: string;
 
   public stateService: StateService;
+
+  @select(['auth', 'pending']) public authPending: boolean;
+  @select(['auth', 'error']) public authError: string;
+  @select(['auth', 'user']) public currentUser;
+
 
   constructor(authService: AuthService, stateService: StateService, snackBar: MdSnackBar) {
     this.authService = authService;

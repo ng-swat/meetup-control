@@ -1,10 +1,10 @@
 import {Component, OnDestroy} from '@angular/core';
 import {StateService} from './utils/state.service';
 import {NgRedux, select} from '@angular-redux/store'; // <- New
-import { CounterActions } from './app.actions'; // <- New
 import {IAppState} from '../store';
 import {count} from 'rxjs/operator/count';
-import {Observable} from 'rxjs/Observable'; // <- New
+import {Observable} from 'rxjs/Observable';
+import {AuthService} from './auth/auth.service'; // <- New
 
 @Component({
   selector: 'app-root',
@@ -18,9 +18,11 @@ export class AppComponent {
   @select()
   count$: Observable<number>;
 
+  @select(['auth', 'user', 'name']) public currentUser;
+
   constructor(stateService: StateService,
               private ngRedux: NgRedux<IAppState>, // <- New
-              private actions: CounterActions) {
+              private authService: AuthService) {
     this.stateService = stateService;
     this.stateService.isLoggedIn = true; // TODO: REMOVE WHEN LOGIN IS WORKING WITH DB
 
@@ -32,14 +34,7 @@ export class AppComponent {
   //   this.subscription.unsubscribe(); // <- New
   // }
 
-
-
-  increment() {
-    this.ngRedux.dispatch(this.actions.increment()); // <- New
+  logout() {
+    this.authService.logout();
   }
-
-  decrement() {
-    this.ngRedux.dispatch(this.actions.decrement()); // <- New
-  }
-
 }

@@ -12,7 +12,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MyCustomMaterialModule} from '../utils/my-custom-material.module';
 import {meetupRoutes} from '../meetup/meetup.router';
 import {participantsRoutes} from '../participants/participants.router';
-import { AuthActions } from './auth.actions';
+import {MdProgressSpinnerModule} from '@angular/material';
 
 
 @NgModule({
@@ -20,9 +20,10 @@ import { AuthActions } from './auth.actions';
     CommonModule,
     RouterModule.forRoot([...authRoutes, ...meetupRoutes, ...participantsRoutes]),
     ReactiveFormsModule,
-    MyCustomMaterialModule
+    MyCustomMaterialModule,
+    MdProgressSpinnerModule,
   ],
-  providers: [AuthService, StateService, AuthActions],
+  providers: [AuthService, StateService],
   declarations: [LoginComponent, LogoutComponent, PasswordRecoverComponent, RegistrationComponent],
   exports: [LoginComponent, LogoutComponent, PasswordRecoverComponent, RegistrationComponent, MyCustomMaterialModule]
 })

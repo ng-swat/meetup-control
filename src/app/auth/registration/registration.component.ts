@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MdSnackBar} from '@angular/material';
+import {select} from '@angular-redux/store';
 
 @Component({
   selector: 'app-registration',
@@ -15,6 +16,8 @@ export class RegistrationComponent implements OnInit {
   private snackBar: MdSnackBar;
   private errorMessage: string;
 
+  @select(['auth', 'pending']) public authPending: boolean;
+  @select(['auth', 'error']) public authError: string;
 
   constructor(authService: AuthService, snackBar: MdSnackBar) {
     this.loginService = authService;
@@ -44,6 +47,9 @@ export class RegistrationComponent implements OnInit {
     if (this.formRegistration.get('name').errors) {
       if (this.formRegistration.get('name').errors.required) {
         return 'Name is Required';
+      } else if (this.formRegistration.get('name').errors.minlength) {
+        // return `Name ${JSON.stringify(this.formRegistration.get('name').errors.minlength) } `;
+        return `Name must contain at least ${this.formRegistration.get('name').errors.minlength.requiredLength} chars`;
       }
     } else if (this.formRegistration.get('email').errors) {
       if (this.formRegistration.get('email').errors.required) {

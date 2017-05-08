@@ -18,11 +18,18 @@ import {authRoutes} from './auth/auth.router';
 import {meetupRoutes} from './meetup/meetup.router';
 import {participantsRoutes} from './participants/participants.router';
 
-import { NgReduxModule, NgRedux } from '@angular-redux/store';
+import {NgReduxModule, NgRedux, select} from '@angular-redux/store';
 import createLogger from 'redux-logger';
 
-import { rootReducer, IAppState, INITIAL_STATE } from '../store'; // < New
-import { CounterActions } from './app.actions'; // <- New
+import { IAppState, INITIAL_STATE } from '../store'; // < New
+import {authReducer} from './auth/auth.reducer';
+import {combineReducers} from 'redux';
+import {MenuModule} from './menu/menu.module';
+import {authMdl} from './middlware/auth.middlware';
+
+const rootReducer = combineReducers({
+  auth: authReducer
+});
 
 @NgModule({
   declarations: [
@@ -35,17 +42,19 @@ import { CounterActions } from './app.actions'; // <- New
     BrowserAnimationsModule,
     MyCustomMaterialModule,
     AuthModule,
+    MenuModule,
     MeetupModule,
     ParticipantsModule,
     NgReduxModule,
   ],
-  providers: [StateService, CounterActions ],
+  providers: [StateService],
   exports: [MyCustomMaterialModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 
-  constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.configureStore(rootReducer, INITIAL_STATE, [ createLogger ]);
+  @select(['auth', 'user']) public currentUser;
+  constructor(ngRedux: NgRedux<any>) {
+    ngRedux.configureStore(rootReducer, INITIAL_STATE, [ authMdl, createLogger ]);
   }
 }

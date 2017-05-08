@@ -1,16 +1,19 @@
+
 <md-menu #menu="mdMenu" position-y="100">
+
   <button md-menu-item routerLink="/">Home</button>
-  <button md-menu-item routerLink="login" *ngIf="!stateService.isLoggedIn">Login</button>
+  <button md-menu-item routerLink="login" *ngIf="!(currentUser | async)">Login</button>
+  <button md-menu-item routerLink="registration" *ngIf="!(currentUser | async)">Registration</button>
+  <button md-menu-item routerLink="password-recover" *ngIf="!(currentUser | async)">Password Recovery</button>
 
-  <button md-menu-item routerLink="registration" *ngIf="!stateService.isLoggedIn">Registration</button>
-  <button md-menu-item routerLink="password-recover">Password Recovery</button>
-  <button md-menu-item routerLink="/" (click)="stateService.logout()" *ngIf="stateService.isLoggedIn">Logout</button>
-
-  <div *ngIf="stateService.isLoggedIn">
-  <button md-menu-item routerLink="my-meetups">My Meetups</button>
-  <button md-menu-item routerLink="participants">Participants</button>
-  <button md-menu-item routerLink="participants-check-in">Check In</button>
+  <div *ngIf="currentUser | async">
+    <button md-menu-item routerLink="my-meetups">My Meetups</button>
+    <button md-menu-item routerLink="participants">Participants</button>
+    <button md-menu-item routerLink="participants-check-in">Check In</button>
   </div>
+
+  <button md-menu-item routerLink="/" (click)="this.logout()" *ngIf="currentUser | async">Logout</button>
+
 </md-menu>
 
 
@@ -21,16 +24,17 @@
     M
   </button>
 
-  Meetup Control
+  <div class="app-name">
+    Meetup Control
+  </div>
+  <div class="user-name">
+    {{ currentUser | async }}
+  </div>
+
 </md-toolbar>
 
 <br><br>
 
-<div>
-  Count: {{ count$ | async}}
-  <button (click)="increment()">+</button>
-  <button (click)="decrement()">-</button>
-</div>
 
 
 <router-outlet></router-outlet>

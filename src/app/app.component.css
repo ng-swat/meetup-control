@@ -12,3 +12,11 @@ md-toolbar {
   bottom: 50px;
   right: 50px;
 }
+
+.app-name{
+  width: 50%;
+}
+.user-name {
+  text-align: right;
+  width: 50%;
+}
