@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from '../login.service';
+import { AuthService} from '../auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MdSnackBar} from '@angular/material';
+import {select} from '@angular-redux/store';
 
 @Component({
   selector: 'app-password-reminder',
@@ -10,13 +11,16 @@ import {MdSnackBar} from '@angular/material';
 })
 export class PasswordRecoverComponent implements OnInit {
 
-  private loginService: LoginService;
+  private authService: AuthService;
   public formPasswordRecover: FormGroup;
   private snackBar: MdSnackBar;
   private errorMessage: string;
 
-  constructor(loginService: LoginService, snackBar: MdSnackBar) {
-    this.loginService = loginService;
+  @select(['auth', 'pending']) public authPending: boolean;
+  @select(['auth', 'error']) public authError: string;
+
+  constructor(authService: AuthService, snackBar: MdSnackBar) {
+    this.authService = authService;
     this.snackBar = snackBar;
   }
 
@@ -28,7 +32,7 @@ export class PasswordRecoverComponent implements OnInit {
 
   passwordRecover() {
     if (this.formPasswordRecover.valid) {
-      this.loginService.passwordRecover(this.formPasswordRecover.value);
+      this.authService.passwordRecover(this.formPasswordRecover.value);
     } else {
       this.errorMessage = this.getErrorMessage();
       this.snackBar.open(this.errorMessage, 'OK', {
@@ -41,6 +45,8 @@ export class PasswordRecoverComponent implements OnInit {
      if (this.formPasswordRecover.get('email').errors) {
       if (this.formPasswordRecover.get('email').errors.required) {
         return 'Email is Required';
+      } else if (this.formPasswordRecover.get('email').errors.email) {
+        return 'Email is Not Valid';
       }
     }
     return '';

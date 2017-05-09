@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from '../login.service';
+import {AuthService} from '../auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {MdSnackBar} from '@angular/material';
+import {MdSnackBar, MdSpinner} from '@angular/material';
 import {StateService} from '../../utils/state.service';
+import {select} from '@angular-redux/store';
 
 
 @Component({
@@ -12,15 +13,20 @@ import {StateService} from '../../utils/state.service';
 })
 export class LoginComponent implements OnInit {
 
-  private loginService: LoginService;
+  private authService: AuthService;
   public formLogin: FormGroup;
   private snackBar: MdSnackBar;
   private errorMessage: string;
 
   public stateService: StateService;
 
-  constructor(loginService: LoginService, stateService: StateService, snackBar: MdSnackBar) {
-    this.loginService = loginService;
+  @select(['auth', 'pending']) public authPending: boolean;
+  @select(['auth', 'error']) public authError: string;
+  @select(['auth', 'user']) public currentUser;
+
+
+  constructor(authService: AuthService, stateService: StateService, snackBar: MdSnackBar) {
+    this.authService = authService;
     this.stateService = stateService;
     this.snackBar = snackBar;
   }
@@ -35,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.formLogin.valid) {
-      this.loginService.login(this.formLogin.value);
+      this.authService.login(this.formLogin.value);
     } else {
       this.errorMessage = this.getErrorMessage();
       this.snackBar.open(this.errorMessage, 'OK', {

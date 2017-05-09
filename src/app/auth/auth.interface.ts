@@ -11,4 +11,8 @@ export interface RegistrationForm {
 export interface PasswordRecoverForm {
   email: string;
 }
-
+export interface User {
+  email: string;
+  password: string;
+  name: string;
+}

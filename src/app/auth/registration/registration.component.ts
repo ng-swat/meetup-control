@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from '../login.service';
+import {AuthService} from '../auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MdSnackBar} from '@angular/material';
+import {select} from '@angular-redux/store';
 
 @Component({
   selector: 'app-registration',
@@ -10,14 +11,16 @@ import {MdSnackBar} from '@angular/material';
 })
 export class RegistrationComponent implements OnInit {
 
-  private loginService: LoginService;
+  private loginService: AuthService;
   public formRegistration: FormGroup;
   private snackBar: MdSnackBar;
   private errorMessage: string;
 
+  @select(['auth', 'pending']) public authPending: boolean;
+  @select(['auth', 'error']) public authError: string;
 
-  constructor(loginService: LoginService, snackBar: MdSnackBar) {
-    this.loginService = loginService;
+  constructor(authService: AuthService, snackBar: MdSnackBar) {
+    this.loginService = authService;
     this.snackBar = snackBar;
   }
 
@@ -44,6 +47,9 @@ export class RegistrationComponent implements OnInit {
     if (this.formRegistration.get('name').errors) {
       if (this.formRegistration.get('name').errors.required) {
         return 'Name is Required';
+      } else if (this.formRegistration.get('name').errors.minlength) {
+        // return `Name ${JSON.stringify(this.formRegistration.get('name').errors.minlength) } `;
+        return `Name must contain at least ${this.formRegistration.get('name').errors.minlength.requiredLength} chars`;
       }
     } else if (this.formRegistration.get('email').errors) {
       if (this.formRegistration.get('email').errors.required) {

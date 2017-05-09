@@ -5,23 +5,26 @@ import { LogoutComponent } from './logout/logout.component';
 import { PasswordRecoverComponent } from './password-recover/password-recover.component';
 import { RegistrationComponent } from './registration/registration.component';
 import {RouterModule} from '@angular/router';
-import {loginRoutes} from './login.router';
+import {authRoutes} from './auth.router';
 import {StateService} from '../utils/state.service';
-import {LoginService} from './login.service';
+import {AuthService} from './auth.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MyCustomMaterialModule} from '../utils/my-custom-material.module';
 import {meetupRoutes} from '../meetup/meetup.router';
 import {participantsRoutes} from '../participants/participants.router';
+import {MdProgressSpinnerModule} from '@angular/material';
+
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot([...loginRoutes, ...meetupRoutes, ...participantsRoutes]),
+    RouterModule.forRoot([...authRoutes, ...meetupRoutes, ...participantsRoutes]),
     ReactiveFormsModule,
-    MyCustomMaterialModule
+    MyCustomMaterialModule,
+    MdProgressSpinnerModule,
   ],
-  providers: [LoginService, StateService],
+  providers: [AuthService, StateService],
   declarations: [LoginComponent, LogoutComponent, PasswordRecoverComponent, RegistrationComponent],
   exports: [LoginComponent, LogoutComponent, PasswordRecoverComponent, RegistrationComponent, MyCustomMaterialModule]
 })
-export class LoginModule { }
+export class AuthModule { }

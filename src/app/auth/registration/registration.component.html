@@ -20,6 +20,14 @@
     </md-input-container>
 
     <md-card-actions align="center">
+      <div class="spinner-container">
+        <md-spinner title="Loading..." *ngIf="(authPending | async)"></md-spinner>
+      </div>
+
+      <div class="error-container" >
+        <div class="login-error" *ngIf="(authError| async)">{{ (authError| async) }}</div>
+      </div>
+
       <button md-raised-button type="submit" class="button default">Submit</button>
     </md-card-actions>
 

@@ -1,0 +1,17 @@
+.spinner-container {
+  height: 30px;
+}
+md-spinner {
+  width:30px;
+  height: 30px;
+  margin: 0 auto;
+}
+
+.error-container{
+  height: 30px;
+  margin: 0 auto;
+}
+.login-error{
+  color:red;
+  font-weight: bold;
+}
