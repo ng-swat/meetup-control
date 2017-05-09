@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {LoginForm, PasswordRecoverForm, RegistrationForm, User} from './auth.interface';
 import {FormGroup} from '@angular/forms';
-import {StateService} from '../utils/state.service';
 import {NgRedux} from '@angular-redux/store';
 import {IAppState} from '../../store';
 
@@ -23,19 +22,16 @@ export class AuthService {
 
 
 
-  public stateService: StateService;
   public users: User[] = [
     {email: 'gal@xxx.com', name: 'Gal', password: 'gal'},
     {email: 'gal2@xxx.com', name: 'Gal-2', password: 'gal2'},
     {email: 'qwe@qwe.qwe', name: 'Gal Tamir', password: 'qwe'},
   ];
 
-  constructor(stateService: StateService, private store: NgRedux<IAppState>) {
-    this.stateService = stateService;
+  constructor(private store: NgRedux<IAppState>) {
   }
 
   login(loginData: LoginForm) {
-    console.log('LoginService.login()', loginData);
     this.store.dispatch({
       type: LOGIN_PENDING,
       payload: {}
@@ -46,7 +42,6 @@ export class AuthService {
         return ((user.email === loginData.email) && (user.password === loginData.password));
       });
       if (loggedInUser) {
-        // this.stateService.isLoggedIn = true;
         this.store.dispatch({
           type: LOGIN_SUCCESS,
           payload: loggedInUser
@@ -117,7 +112,6 @@ export class AuthService {
   }
 
   logout() {
-    // this.stateService.isLoggedIn = false;
     this.store.dispatch({
       type: LOGOUT,
       payload: {}

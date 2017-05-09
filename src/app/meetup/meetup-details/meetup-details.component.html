@@ -1,31 +1,31 @@
-<div>
-
-  <h2>Meetup Details</h2>
+<div *ngIf="(meetup | async)">
+  <button class="back-button" routerLink="../../my-meetups"><</button>
+  <h2>Meetup: {{(meetup|async).title}}</h2>
 
   <table class="styled" *ngIf="meetup">
     <tr>
       <td>Id</td>
-      <td>{{meetup.meetupId}}</td>
+      <td>{{(meetup|async).meetupId}}</td>
     </tr>
     <tr>
       <td>Title</td>
-      <td>{{meetup.title}}</td>
+      <td>{{(meetup|async).title}}</td>
     </tr>
     <tr>
       <td>Sub-Title</td>
-      <td>{{meetup.subtitle}}</td>
+      <td>{{(meetup|async).subtitle}}</td>
     </tr>
     <tr>
       <td>Desc</td>
-      <td>{{meetup.description}}</td>
+      <td>{{(meetup|async).description}}</td>
     </tr>
     <tr>
       <td>Start Date</td>
-      <td>{{meetup.startDate | date:'short'}}</td>
+      <td>{{(meetup|async).startDate | date:'short'}}</td>
     </tr>
     <tr>
       <td>End Date</td>
-      <td>{{meetup.endDate | date:'short'}}</td>
+      <td>{{(meetup|async).endDate | date:'short'}}</td>
     </tr>
   </table>
 
@@ -36,7 +36,7 @@
   <h2>Participants</h2>
 
   <table class="styled">
-    <tr *ngFor="let participant of meetup.participants" (click)="openQrCodeDialog(participant.participantId)">
+    <tr *ngFor="let participant of (meetup|async).participants" (click)="openQrCodeDialog(participant.participantId)">
       <td>{{ participant.participantId }}</td>
       <td>{{ participant.name}}</td>
     </tr>

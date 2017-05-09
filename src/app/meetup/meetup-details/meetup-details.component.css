@@ -2,3 +2,9 @@
   text-align: center;
   margin:20px;
 }
+
+.back-button{
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}

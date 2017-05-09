@@ -13,14 +13,14 @@ import {QrCodeViewerComponent} from '../qr-code-viewer/qr-code-viewer.component'
 export class MeetupDetailsComponent implements OnInit, OnDestroy {
 
   public meetupService: MeetupService;
-  public meetup: Meetup;
   public dialog: MdDialog;
   public dialogRef: MdDialogRef<QrCodeViewerComponent>;
   private sub: any;
 
+  @select(['meetup', 'meetupDetails']) public meetup: Meetup;
+
   constructor(meetupService: MeetupService, private route: ActivatedRoute, dialog: MdDialog) {
     this.meetupService = meetupService;
-    this.meetup = this.meetupService.getMyMeetups()[1];
     this.dialog = dialog;
 
   }
@@ -28,9 +28,10 @@ export class MeetupDetailsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe( (params) => {
       const meetupId = +params['meetupId'];
-      this.meetup = this.meetupService.getMyMeetups().find((oMeetup) => {
-        return (oMeetup.meetupId === meetupId);
-      });
+      this.meetupService.getMeetup(meetupId);
+    //   this.meetup = this.meetupService.getMyMeetups().find((oMeetup) => {
+    //     return (oMeetup.meetupId === meetupId);
+    //   });
     });
   }
 

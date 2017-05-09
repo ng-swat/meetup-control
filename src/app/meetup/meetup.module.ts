@@ -9,6 +9,7 @@ import { MeetupDetailsComponent } from './meetup-details/meetup-details.componen
 import {MeetupService} from './meetup.service';
 import {QRCodeModule} from 'angular2-qrcode';
 import { QrCodeViewerComponent } from './qr-code-viewer/qr-code-viewer.component';
+import {MdProgressSpinnerModule} from '@angular/material';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { QrCodeViewerComponent } from './qr-code-viewer/qr-code-viewer.component
     CommonModule,
     RouterModule,
     MyCustomMaterialModule,
+    MdProgressSpinnerModule,
     QRCodeModule,
   ],
   providers: [MeetupService],
