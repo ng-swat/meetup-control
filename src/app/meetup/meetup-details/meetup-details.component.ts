@@ -4,6 +4,7 @@ import {Meetup} from '../meetup.interface';
 import {ActivatedRoute} from '@angular/router';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {QrCodeViewerComponent} from '../qr-code-viewer/qr-code-viewer.component';
+import {select} from '@angular-redux/store';
 
 @Component({
   selector: 'app-meetup',
