@@ -50,6 +50,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  autoLogin() {
+    this.formLogin.get('email').setValue('qwe@qwe.qwe');
+    this.formLogin.get('password').setValue('qwe');
+    this.login();
+  }
+
   getErrorMessage(): string {
     if (this.formLogin.get('email').errors) {
       if (this.formLogin.get('email').errors.required) {

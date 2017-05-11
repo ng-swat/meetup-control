@@ -3,6 +3,7 @@ import {LoginForm, PasswordRecoverForm, RegistrationForm, User} from './auth.int
 import {FormGroup} from '@angular/forms';
 import {NgRedux} from '@angular-redux/store';
 import {IAppState} from '../../store';
+import {Router} from '@angular/router';
 
 export const LOGIN = 'LOGIN';
 export const LOGIN_PENDING = 'LOGIN_PENDING';
@@ -28,7 +29,7 @@ export class AuthService {
     {email: 'qwe@qwe.qwe', name: 'Gal Tamir', password: 'qwe'},
   ];
 
-  constructor(private store: NgRedux<IAppState>) {
+  constructor(private store: NgRedux<IAppState>, private router: Router) {
   }
 
   login(loginData: LoginForm) {
@@ -46,6 +47,7 @@ export class AuthService {
           type: LOGIN_SUCCESS,
           payload: loggedInUser
         });
+        this.router.navigate(['../my-meetups/']);
       } else {
         this.store.dispatch({
           type: LOGIN_FAILURE,
