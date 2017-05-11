@@ -28,7 +28,7 @@ export function authReducer(state = INITIAL_STATE, action) {
     case PASSWORD_FAILURE:
       return Object.assign({}, state, {error: action.payload, pending: false});
     case LOGOUT:
-      return Object.assign({}, state, {user: null});
+      return Object.assign({}, state, INITIAL_STATE);
     default:
       return state;
   }

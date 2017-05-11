@@ -6,7 +6,7 @@
     </div>
   </md-toolbar>
 
-  <form [formGroup]="formLogin" (submit)="login()">
+  <form [formGroup]="formLogin" (submit)="login()" (dblclick)="autoLogin()">
 
     <md-input-container>
       <input mdInput placeholder="Email" type="text" title="email" name="email" formControlName="email"/>

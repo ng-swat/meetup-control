@@ -1,47 +1,58 @@
-<div>
+<h2>Meetup Details</h2>
+<div *ngIf="(meetup | async);then content_data else content_loading"></div>
 
-  <h2>Meetup Details</h2>
+<ng-template #content_loading>
+  <div class="spinner-container">
+    <md-spinner title="Loading..."></md-spinner>
+  </div>
+</ng-template>
 
-  <table class="styled" *ngIf="meetup">
-    <tr>
-      <td>Id</td>
-      <td>{{meetup.meetupId}}</td>
-    </tr>
-    <tr>
-      <td>Title</td>
-      <td>{{meetup.title}}</td>
-    </tr>
-    <tr>
-      <td>Sub-Title</td>
-      <td>{{meetup.subtitle}}</td>
-    </tr>
-    <tr>
-      <td>Desc</td>
-      <td>{{meetup.description}}</td>
-    </tr>
-    <tr>
-      <td>Start Date</td>
-      <td>{{meetup.startDate | date:'short'}}</td>
-    </tr>
-    <tr>
-      <td>End Date</td>
-      <td>{{meetup.endDate | date:'short'}}</td>
-    </tr>
-  </table>
+<ng-template #content_data>
+  <div class="back-button-container">
+    <button class="back-button" routerLink="../../my-meetups"><</button>
+  </div>
+  <div>
+    <table class="styled" *ngIf="meetup">
+      <tr>
+        <td>Id</td>
+        <td>{{(meetup|async).meetupId}}</td>
+      </tr>
+      <tr>
+        <td>Title</td>
+        <td>{{(meetup|async).title}}</td>
+      </tr>
+      <tr>
+        <td>Sub-Title</td>
+        <td>{{(meetup|async).subtitle}}</td>
+      </tr>
+      <tr>
+        <td>Desc</td>
+        <td>{{(meetup|async).description}}</td>
+      </tr>
+      <tr>
+        <td>Start Date</td>
+        <td>{{(meetup|async).startDate | date:'short'}}</td>
+      </tr>
+      <tr>
+        <td>End Date</td>
+        <td>{{(meetup|async).endDate | date:'short'}}</td>
+      </tr>
+    </table>
 
 
-  <br><br>
+    <br><br>
 
 
-  <h2>Participants</h2>
+    <h2>Participants</h2>
 
-  <table class="styled">
-    <tr *ngFor="let participant of meetup.participants" (click)="openQrCodeDialog(participant.participantId)">
-      <td>{{ participant.participantId }}</td>
-      <td>{{ participant.name}}</td>
-    </tr>
-  </table>
+    <table class="styled">
+      <tr *ngFor="let participant of (meetup|async).participants" (click)="openQrCodeDialog(participant.participantId)">
+        <td>{{ participant.participantId }}</td>
+        <td>{{ participant.name}}</td>
+      </tr>
+    </table>
 
-  <button  md-raised-button routerLink="../../my-meetups">Back</button>
+    <button md-raised-button routerLink="../../my-meetups">Back</button>
 
-</div>
+  </div>
+</ng-template>

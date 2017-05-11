@@ -24,11 +24,12 @@ import createLogger from 'redux-logger';
 import { IAppState, INITIAL_STATE } from '../store'; // < New
 import {authReducer} from './auth/auth.reducer';
 import {combineReducers} from 'redux';
-import {MenuModule} from './menu/menu.module';
 import {authMdl} from './middlware/auth.middlware';
+import {meetupReducer} from './meetup/meetup.reducer';
 
 const rootReducer = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  meetup: meetupReducer
 });
 
 @NgModule({
@@ -42,7 +43,6 @@ const rootReducer = combineReducers({
     BrowserAnimationsModule,
     MyCustomMaterialModule,
     AuthModule,
-    MenuModule,
     MeetupModule,
     ParticipantsModule,
     NgReduxModule,

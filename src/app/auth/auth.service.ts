@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {LoginForm, PasswordRecoverForm, RegistrationForm, User} from './auth.interface';
 import {FormGroup} from '@angular/forms';
-import {StateService} from '../utils/state.service';
 import {NgRedux} from '@angular-redux/store';
 import {IAppState} from '../../store';
+import {Router} from '@angular/router';
+import {USERS_MOCK} from '../mocks/mock-users';
 
 export const LOGIN = 'LOGIN';
 export const LOGIN_PENDING = 'LOGIN_PENDING';
@@ -23,41 +24,39 @@ export class AuthService {
 
 
 
-  public stateService: StateService;
-  public users: User[] = [
-    {email: 'gal@xxx.com', name: 'Gal', password: 'gal'},
-    {email: 'gal2@xxx.com', name: 'Gal-2', password: 'gal2'},
-    {email: 'qwe@qwe.qwe', name: 'Gal Tamir', password: 'qwe'},
-  ];
+  // public users: User[] = [
+  //   {email: 'gal@xxx.com', name: 'Gal', password: 'gal'},
+  //   {email: 'gal2@xxx.com', name: 'Gal-2', password: 'gal2'},
+  //   {email: 'qwe@qwe.qwe', name: 'Gal Tamir', password: 'qwe'},
+  // ];
+  public users: User[] = USERS_MOCK;
 
-  constructor(stateService: StateService, private store: NgRedux<IAppState>) {
-    this.stateService = stateService;
+  constructor(private store: NgRedux<IAppState>, private router: Router) {
   }
 
   login(loginData: LoginForm) {
-    console.log('LoginService.login()', loginData);
     this.store.dispatch({
       type: LOGIN_PENDING,
-      payload: {}
+      payload: {loginData}
     });
 
-    setTimeout(() => {
-      const loggedInUser = this.users.find((user) => {
-        return ((user.email === loginData.email) && (user.password === loginData.password));
-      });
-      if (loggedInUser) {
-        // this.stateService.isLoggedIn = true;
-        this.store.dispatch({
-          type: LOGIN_SUCCESS,
-          payload: loggedInUser
-        });
-      } else {
-        this.store.dispatch({
-          type: LOGIN_FAILURE,
-          payload: 'Wrong Email or Password'
-        });
-      }
-    }, 1500);
+    // setTimeout(() => {
+    //   const loggedInUser = this.users.find((user) => {
+    //     return ((user.email === loginData.email) && (user.password === loginData.password));
+    //   });
+    //   if (loggedInUser) {
+    //     this.store.dispatch({
+    //       type: LOGIN_SUCCESS,
+    //       payload: loggedInUser
+    //     });
+    //     this.router.navigate(['../my-meetups/']);
+    //   } else {
+    //     this.store.dispatch({
+    //       type: LOGIN_FAILURE,
+    //       payload: 'Wrong Email or Password'
+    //     });
+    //   }
+    // }, 1500);
   }
 
   registration(registrationData: RegistrationForm) {
@@ -117,7 +116,6 @@ export class AuthService {
   }
 
   logout() {
-    // this.stateService.isLoggedIn = false;
     this.store.dispatch({
       type: LOGOUT,
       payload: {}

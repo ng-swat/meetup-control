@@ -1,4 +1,22 @@
+.spinner-container {
+  height: 30px;
+}
+md-spinner {
+  width:30px;
+  height: 30px;
+  margin: 0 auto;
+}
+
 .qr-container {
   text-align: center;
   margin:20px;
+}
+
+.back-button-container{
+  text-align: right;
+}
+.back-button{
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
 }
