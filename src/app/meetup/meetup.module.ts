@@ -10,12 +10,14 @@ import {MeetupService} from './meetup.service';
 import {QRCodeModule} from 'angular2-qrcode';
 import { QrCodeViewerComponent } from './qr-code-viewer/qr-code-viewer.component';
 import {MdProgressSpinnerModule} from '@angular/material';
+import {HttpModule} from '@angular/http';
 
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    HttpModule,
     MyCustomMaterialModule,
     MdProgressSpinnerModule,
     QRCodeModule,

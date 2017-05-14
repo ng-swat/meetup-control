@@ -18,7 +18,8 @@ export class MeetupDetailsComponent implements OnInit, OnDestroy {
   public dialogRef: MdDialogRef<QrCodeViewerComponent>;
   private sub: any;
 
-  @select(['meetup', 'meetupDetails']) public meetup: Meetup;
+  @select(['meetup', 'meetupDetails']) public meetup: any;
+  @select(['meetup', 'rsvp']) public meetupRsvp: any;
 
   constructor(meetupService: MeetupService, private route: ActivatedRoute, dialog: MdDialog) {
     this.meetupService = meetupService;
@@ -44,7 +45,7 @@ export class MeetupDetailsComponent implements OnInit, OnDestroy {
   openQrCodeDialog(participantId: number) {
     this.dialogRef = this.dialog.open(QrCodeViewerComponent, {});
     const qrCodeViewerInstance = this.dialogRef.componentInstance;
-    qrCodeViewerInstance.value = `${this.meetup.meetupId} - ${participantId}`;
+    qrCodeViewerInstance.value = `${this.meetup.id} - ${participantId}`;
   }
 
 

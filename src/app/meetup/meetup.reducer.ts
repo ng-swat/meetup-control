@@ -6,7 +6,7 @@ import {
   GET_MEETUPS,
   GET_MEETUPS_PENDING,
   GET_MEETUPS_SUCCESS,
-  GET_MEETUPS_FAILURE, MEETUP_SELECTED
+  GET_MEETUPS_FAILURE, MEETUP_SELECTED, GET_MEETUP_RSVP_FAILURE, GET_MEETUP_RSVP_SUCCESS, GET_MEETUP_RSVP
 } from './meetup.service';
 import {INITIAL_STATE} from '../../store';
 
@@ -34,6 +34,13 @@ export function meetupReducer(state = INITIAL_STATE, action) {
       return Object.assign({}, state, {list: action.payload, error: null, pending: false});
     case GET_MEETUPS_FAILURE:
       return Object.assign({}, state, {list: null, error: action.payload, pending: false});
+
+    case GET_MEETUP_RSVP:
+      return Object.assign({}, state, {error: null, pending: true});
+    case GET_MEETUP_RSVP_SUCCESS:
+      return Object.assign({}, state, {rsvp: action.payload, error: null, pending: false});
+    case GET_MEETUP_RSVP_FAILURE:
+      return Object.assign({}, state, {rsvp : null, error: action.payload, pending: false});
 
     default:
       return state;
