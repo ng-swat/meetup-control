@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Meetup } from './meetup.interface';
 import {NgRedux} from '@angular-redux/store';
+import {UPDATE_LOCATION} from '@angular-redux/router';
 
 export const GET_MEETUPS = 'GET_MEETUPS';
 export const GET_MEETUPS_PENDING = 'GET_MEETUPS_PENDING';
 export const GET_MEETUPS_SUCCESS = 'GET_MEETUPS_SUCCESS';
 export const GET_MEETUPS_FAILURE = 'GET_MEETUPS_FAILURE';
+export const MEETUP_SELECTED = 'MEETUP_SELECTED';
 export const GET_MEETUP = 'GET_MEETUP';
 export const GET_MEETUP_PENDING = 'GET_MEETUP_PENDING';
 export const GET_MEETUP_SUCCESS = 'GET_MEETUP_SUCCESS';
@@ -108,6 +110,16 @@ export class MeetupService {
     }, 1500);
   }
 
+  meetupSelected(meetupId: number) {
+    this.store.dispatch({
+      type: UPDATE_LOCATION,
+      payload: `/meetup-details/${meetupId}`
+    });
+    // this.store.dispatch({
+    //   type: 'MEETUP_SELECTED',
+    //   payload: meetupId
+    // });
+  }
   getMeetup(meetupId: number) {
     this.store.dispatch({
       type: 'GET_MEETUP',

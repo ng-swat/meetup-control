@@ -5,6 +5,7 @@ import {NgRedux} from '@angular-redux/store';
 import {IAppState} from '../../store';
 import {Router} from '@angular/router';
 import {USERS_MOCK} from '../mocks/mock-users';
+import {UPDATE_LOCATION} from '@angular-redux/router';
 
 export const LOGIN = 'LOGIN';
 export const LOGIN_PENDING = 'LOGIN_PENDING';
@@ -63,31 +64,8 @@ export class AuthService {
     console.log('LoginService.registration()', registrationData);
     this.store.dispatch({
       type: REGISTRATION_PENDING,
-      payload: {}
+      payload: {registrationData}
     });
-
-    setTimeout(() => {
-      const existsUser = this.users.find(user => {
-        return (user.email === registrationData.email);
-      });
-      if (existsUser) {
-        this.store.dispatch({
-          type: REGISTRATION_FAILURE,
-          payload: 'Email already exists'
-        });
-      } else {
-        this.store.dispatch({
-          type: REGISTRATION_SUCCESS,
-          payload: {}
-        });
-
-        this.users.push({
-          name: registrationData.name,
-          email: registrationData.email,
-          password: registrationData.password
-        });
-      }
-    }, 1500);
   }
 
   passwordRecover(passwordRecoverData: PasswordRecoverForm) {
@@ -119,6 +97,10 @@ export class AuthService {
     this.store.dispatch({
       type: LOGOUT,
       payload: {}
+    });
+    this.store.dispatch({
+      type: UPDATE_LOCATION,
+      payload: '/login'
     });
   }
 

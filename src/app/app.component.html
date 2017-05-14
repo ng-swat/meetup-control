@@ -12,7 +12,7 @@
     <button md-menu-item routerLink="participants-check-in">Check In</button>
   </div>
 
-  <button md-menu-item routerLink="/" (click)="this.logout()" *ngIf="currentUser | async">Logout</button>
+  <button md-menu-item (click)="this.logout()" *ngIf="currentUser | async">Logout</button>
 
 </md-menu>
 
